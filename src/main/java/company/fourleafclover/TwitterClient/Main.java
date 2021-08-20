@@ -16,15 +16,15 @@ public class Main {
         System.out.println("Started!");
 
 
-        final JFrame frame = new JFrame("Twitter Client");
+        final JFrame frame = new JFrame("Keturahs Twitter Client");
 
-        JLabel lblKey = new JLabel("API Token:");
-        JTextField tfKey = new JPasswordField(20);
-        lblKey.setLabelFor(tfKey);
+        JLabel lblKey = new JLabel("API Key:");
+        final JPasswordField pfKey = new JPasswordField(20);
+        lblKey.setLabelFor(pfKey);
 
         JLabel lblSecret = new JLabel("API Secret:");
-        JTextField tfSecret = new JPasswordField(20);
-        lblSecret.setLabelFor(tfSecret);
+        final JPasswordField pfSecret = new JPasswordField(20);
+        lblSecret.setLabelFor(pfSecret);
 
         JLabel lblToken = new JLabel("Access Token:");
         final JPasswordField pfToken = new JPasswordField(20);
@@ -44,16 +44,17 @@ public class Main {
                 new ActionListener() {
 
                     public void actionPerformed(ActionEvent e) {
-                        String APItoken = new String(pfToken.getPassword());
+                        String APIKey = new String(pfKey.getPassword());
                         String APISecret = new String(pfASecret.getPassword());
                         String AccessToken = new String(pfToken.getPassword());
                         String AccessSecret = new String(pfASecret.getPassword());
                         String Msg = new String(tfmsg.getText());
 
+
                         try {
                             Twitter twitter = new TwitterFactory().getInstance();
 
-                            twitter.setOAuthConsumer(APItoken, APISecret);
+                            twitter.setOAuthConsumer(APIKey, APISecret);
                             AccessToken accessToken = new AccessToken(AccessToken,
                                     AccessSecret);
 
@@ -79,9 +80,9 @@ public class Main {
         panel.setLayout(new SpringLayout());
 
         panel.add(lblKey);//API Key
-        panel.add(tfKey);//Api Key
+        panel.add(pfKey);//Api Key
         panel.add(lblSecret);//Access Secret
-        panel.add(tfSecret);
+        panel.add(pfSecret);
         panel.add(lblToken);//API Token
         panel.add(pfToken);//API Token
         panel.add(lblASecret);
