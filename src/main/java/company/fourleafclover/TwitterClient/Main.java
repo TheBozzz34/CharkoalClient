@@ -119,6 +119,12 @@ public class Main {
 
                     public void actionPerformed(ActionEvent e) {
                             try {
+
+                                JOptionPane.showMessageDialog(frame,
+                                        "This feature is coming soon(maybe).");
+
+
+
                                 // The factory instance is re-useable and thread safe.
                                 Twitter twitter = TwitterFactory.getSingleton();
                                 twitter.setOAuthConsumer("key", "secret");
