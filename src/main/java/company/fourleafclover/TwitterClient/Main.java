@@ -28,7 +28,7 @@ public class Main {
         System.out.println("Started!");
 
 
-        final JFrame frame = new JFrame("Keturahs Twitter Client");
+        final JFrame frame = new JFrame("Charkoal Twitter Client");
 
         JLabel lblKey = new JLabel("API Key:");
         JTextField tfKey = new JTextField(20);
