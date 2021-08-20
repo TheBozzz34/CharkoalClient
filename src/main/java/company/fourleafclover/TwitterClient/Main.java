@@ -1,6 +1,10 @@
 package company.fourleafclover.TwitterClient;
 
 
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.auth.AccessToken;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,6 +34,10 @@ public class Main {
         final JPasswordField pfASecret = new JPasswordField(20);
         lblASecret.setLabelFor(pfASecret);
 
+        JLabel lblmsg = new JLabel("Message:");
+        JTextField tfmsg = new JTextField(20);
+        lblmsg.setLabelFor(tfmsg);
+
         JButton btnGet = new JButton("Send tweet");
 
         btnGet.addActionListener(
@@ -40,6 +48,25 @@ public class Main {
                         String APISecret = new String(pfASecret.getPassword());
                         String AccessToken = new String(pfToken.getPassword());
                         String AccessSecret = new String(pfASecret.getPassword());
+                        String Msg = new String(tfmsg.getText());
+
+                        try {
+                            Twitter twitter = new TwitterFactory().getInstance();
+
+                            twitter.setOAuthConsumer(APItoken, APISecret);
+                            AccessToken accessToken = new AccessToken(AccessToken,
+                                    AccessSecret);
+
+                            twitter.setOAuthAccessToken(accessToken);
+
+                            twitter.updateStatus(Msg);
+
+                            System.out.println("Successfully updated the status in Twitter.");
+                        } catch (TwitterException te) {
+                            te.printStackTrace();
+                        }
+
+
 
                         JOptionPane.showMessageDialog(frame,
                                 "Tweet sent!");
@@ -59,11 +86,13 @@ public class Main {
         panel.add(pfToken);//API Token
         panel.add(lblASecret);
         panel.add(pfASecret);
+        panel.add(lblmsg);
+        panel.add(tfmsg);
         panel.add(btnLogin);
         panel.add(btnGet);
 
         jtextfielddemo.SpringUtilities.makeCompactGrid(panel,
-                5, 2, //rows, cols
+                6, 2, //rows, cols
                 6, 6, //initX, initY
                 6, 6); //xPad, yPad
 

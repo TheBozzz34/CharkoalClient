@@ -25,10 +25,9 @@
             <version>2.14.1</version>
         </dependency>
         <dependency>
-            <groupId>com.konghq</groupId>
-            <artifactId>unirest-java</artifactId>
-            <version>3.11.09</version>
-            <classifier>standalone</classifier>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-core</artifactId>
+            <version>[4.0,)</version>
         </dependency>
     </dependencies>
 
