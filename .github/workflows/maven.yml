@@ -27,7 +27,7 @@ jobs:
     - name: Charkoal Upload  
       uses: actions/upload-artifact@v2
       with:
-        path: /home/runner/work/CharkoalClient/CharkoalClient/target/TwitterClient*.jar
+        path: /home/runner/work/CharkoalClient/CharkoalClient/target/TwitterClient-1.0-SNAPSHOT-jar-with-dependencies.jar
       
   
 
