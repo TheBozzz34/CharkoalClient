@@ -5,7 +5,7 @@ A custom twitter client written in Java, Note, that you must be a member of the 
 
 To use:
  - Download the latest Jar from the releases page
- - Run the application with: `java -jar TwitterClient-1.1-SNAPSHOT-jar-with-dependencies.jar`
+ - Run the application with: `java -jar TwitterClient-1.2-SNAPSHOT-jar-with-dependencies.jar`
  - Fill out the text fields
  - Hit Send!
 
