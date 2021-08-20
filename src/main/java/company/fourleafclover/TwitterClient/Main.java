@@ -14,7 +14,7 @@ public class Main {
 
         final JFrame frame = new JFrame("Twitter Client");
 
-        JLabel lblKey = new JLabel("API:");
+        JLabel lblKey = new JLabel("API Token:");
         JTextField tfKey = new JPasswordField(20);
         lblKey.setLabelFor(tfKey);
 
@@ -25,6 +25,10 @@ public class Main {
         JLabel lblToken = new JLabel("Access Token:");
         final JPasswordField pfToken = new JPasswordField(20);
         lblToken.setLabelFor(pfToken);
+
+        JLabel lblASecret = new JLabel("Access Secret:");
+        final JPasswordField pfASecret = new JPasswordField(20);
+        lblASecret.setLabelFor(pfASecret);
 
         JButton btnGet = new JButton("Send tweet");
         btnGet.addActionListener(
@@ -44,15 +48,17 @@ public class Main {
 
         panel.add(lblKey);//API Key
         panel.add(tfKey);//Api Key
+        panel.add(lblSecret);//Access Secret
+        panel.add(tfSecret);
         panel.add(lblToken);//API Token
         panel.add(pfToken);//API Token
-        panel.add(lblSecret);//Access Secret
-        panel.add(tfSecret);//Access Secret
+        panel.add(lblASecret);
+        panel.add(pfASecret);
         panel.add(btnLogin);
         panel.add(btnGet);
 
         jtextfielddemo.SpringUtilities.makeCompactGrid(panel,
-                4, 2, //rows, cols
+                5, 2, //rows, cols
                 6, 6, //initX, initY
                 6, 6); //xPad, yPad
 
