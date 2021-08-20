@@ -91,16 +91,12 @@ public class Main {
                             System.out.println("Logged exception!");
                         }
 
-
-
                         JOptionPane.showMessageDialog(frame,
                                 "Tweet sent!");
                     }
                 });
 
         JButton btnLogin = new JButton("Feedback");
-
-
 
 
 
@@ -120,7 +116,6 @@ public class Main {
                                 ex.printStackTrace();
                             }
                         }
-
 
 
                     }
@@ -152,12 +147,6 @@ public class Main {
         frame.setSize(470, 200);
         frame.getContentPane().add(panel);
         frame.setVisible(true);
-
-
-
-
-
-
 
 
 
