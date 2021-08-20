@@ -1,23 +1,30 @@
 package company.fourleafclover.TwitterClient;
 
-import twitter4j.*;
 import twitter4j.Status;
 import twitter4j.Twitter;
-import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
-import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 
+import java.lang.Exception;
+import io.sentry.Sentry;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
 public class Main {
 
+
+
     public static void main(String[] args) {
+        Sentry.init(options -> {
+            options.setDsn("https://6ed02058198b475ea5c08ee012467b5b@o561860.ingest.sentry.io/5851198");
+            // Set traces_sample_rate to 1.0 to capture 100% of transactions for performance monitoring.
+            // We recommend adjusting this value in production.
+            options.setTracesSampleRate(1.0);
+            // When first trying Sentry it's good to see what the SDK is doing:
+            options.setDebug(true);
+        });
         System.out.println("Started!");
 
 
@@ -73,8 +80,8 @@ public class Main {
                             System.out.println("Successfully updated the status to [" + status.getText() + "].");
 
 
-                        } catch (Exception te) {
-                            te.printStackTrace();
+                        } catch (Exception er) {
+                            Sentry.captureException(er);
                         }
 
 
