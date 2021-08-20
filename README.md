@@ -8,3 +8,5 @@ To use:
  - Run the application with: `java -jar TwitterClient-1.0-SNAPSHOT-jar-with-dependencies.jar`
  - Fill out the text fields
  - Hit Send!
+
+Latest artifacts can be downloaded from the [Workflow](https://github.com/TheBozzz34/CharkoalClient/actions/workflows/maven.yml)
