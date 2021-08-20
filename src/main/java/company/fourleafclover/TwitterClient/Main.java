@@ -5,12 +5,17 @@ import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
+import java.io.IOException;
 import java.lang.Exception;
 import io.sentry.Sentry;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.awt.Desktop;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class Main {
 
@@ -29,6 +34,7 @@ public class Main {
 
 
         final JFrame frame = new JFrame("Charkoal Twitter Client");
+        final JFrame frame2 = new JFrame("Charkoal Twitter Client Feedback");
 
         JLabel lblKey = new JLabel("API Key:");
         JTextField tfKey = new JTextField(20);
@@ -92,14 +98,31 @@ public class Main {
                     }
                 });
 
-        JButton btnLogin = new JButton("Close");
+        JButton btnLogin = new JButton("Feedback");
+
+
+
+
+
 
         btnLogin.addActionListener(
                 new ActionListener() {
 
                     public void actionPerformed(ActionEvent e) {
+                        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                            try {
+                                Desktop.getDesktop().browse(new URI("https://github.com/TheBozzz34/CharkoalClient/issues/new"));
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                                Sentry.captureException(ex);
+                            } catch (URISyntaxException ex) {
+                                Sentry.captureException(ex);
+                                ex.printStackTrace();
+                            }
+                        }
 
-                        System.exit(0);
+
+
                     }
                 });
 
