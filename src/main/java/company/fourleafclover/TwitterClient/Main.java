@@ -1,6 +1,6 @@
 package company.fourleafclover.TwitterClient;
 
-import twitter4j.conf.*;
+import twitter4j.*;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -84,7 +84,16 @@ public class Main {
                     }
                 });
 
-        JButton btnLogin = new JButton("button");
+        JButton btnLogin = new JButton("Close");
+
+        btnLogin.addActionListener(
+                new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        System.exit(0);
+                    }
+                });
 
 
 
