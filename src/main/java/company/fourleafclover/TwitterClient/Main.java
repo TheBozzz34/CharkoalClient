@@ -1,14 +1,19 @@
 package company.fourleafclover.TwitterClient;
 
-
+import twitter4j.conf.*;
+import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
+import twitter4j.conf.ConfigurationBuilder;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class Main {
 
@@ -19,20 +24,20 @@ public class Main {
         final JFrame frame = new JFrame("Keturahs Twitter Client");
 
         JLabel lblKey = new JLabel("API Key:");
-        final JPasswordField pfKey = new JPasswordField(20);
-        lblKey.setLabelFor(pfKey);
+        JTextField tfKey = new JTextField(20);
+        lblKey.setLabelFor(tfKey);
 
         JLabel lblSecret = new JLabel("API Secret:");
-        final JPasswordField pfSecret = new JPasswordField(20);
-        lblSecret.setLabelFor(pfSecret);
+        JTextField tfSecret = new JTextField(20);
+        lblSecret.setLabelFor(tfSecret);
 
         JLabel lblToken = new JLabel("Access Token:");
-        final JPasswordField pfToken = new JPasswordField(20);
-        lblToken.setLabelFor(pfToken);
+        JTextField tfToken = new JTextField(20);
+        lblToken.setLabelFor(tfToken);
 
         JLabel lblASecret = new JLabel("Access Secret:");
-        final JPasswordField pfASecret = new JPasswordField(20);
-        lblASecret.setLabelFor(pfASecret);
+        JTextField tfAsecret = new JTextField(20);
+        lblASecret.setLabelFor(tfAsecret);
 
         JLabel lblmsg = new JLabel("Message:");
         JTextField tfmsg = new JTextField(20);
@@ -44,26 +49,31 @@ public class Main {
                 new ActionListener() {
 
                     public void actionPerformed(ActionEvent e) {
-                        String APIKey = new String(pfKey.getPassword());
-                        String APISecret = new String(pfASecret.getPassword());
-                        String AccessToken = new String(pfToken.getPassword());
-                        String AccessSecret = new String(pfASecret.getPassword());
+                        String consumerKey = new String(tfKey.getText());
+                        String consumerSecret = new String(tfSecret.getText());
+                        String oAuthAccessToken = new String(tfToken.getText());
+                        String oAuthAccessTokenSecret = new String(tfAsecret.getText());
                         String Msg = new String(tfmsg.getText());
 
 
+                        ConfigurationBuilder cb = new ConfigurationBuilder();
+                        cb.setDebugEnabled(true)
+                                .setOAuthConsumerKey(consumerKey)
+                                .setOAuthConsumerSecret(consumerSecret)
+                                .setOAuthAccessToken(oAuthAccessToken)
+                                .setOAuthAccessTokenSecret(oAuthAccessTokenSecret);
+                        TwitterFactory tf = new TwitterFactory(cb.build());
+                        Twitter twitter = tf.getInstance();
+
+
                         try {
-                            Twitter twitter = new TwitterFactory().getInstance();
 
-                            twitter.setOAuthConsumer(APIKey, APISecret);
-                            AccessToken accessToken = new AccessToken(AccessToken,
-                                    AccessSecret);
 
-                            twitter.setOAuthAccessToken(accessToken);
+                            Status status = twitter.updateStatus(Msg);
+                            System.out.println("Successfully updated the status to [" + status.getText() + "].");
 
-                            twitter.updateStatus(Msg);
 
-                            System.out.println("Successfully updated the status in Twitter.");
-                        } catch (TwitterException te) {
+                        } catch (Exception te) {
                             te.printStackTrace();
                         }
 
@@ -74,19 +84,20 @@ public class Main {
                     }
                 });
 
-        JButton btnLogin = new JButton("Login");
+        JButton btnLogin = new JButton("button");
+
+
 
         JPanel panel = new JPanel();
         panel.setLayout(new SpringLayout());
 
         panel.add(lblKey);//API Key
-        panel.add(pfKey);//Api Key
+        panel.add(tfKey);//Api Key
         panel.add(lblSecret);//Access Secret
-        panel.add(pfSecret);
-        panel.add(lblToken);//API Token
-        panel.add(pfToken);//API Token
+        panel.add(tfSecret);panel.add(lblToken);//API Token
+        panel.add(tfToken);//API Token
         panel.add(lblASecret);
-        panel.add(pfASecret);
+        panel.add(tfAsecret);
         panel.add(lblmsg);
         panel.add(tfmsg);
         panel.add(btnLogin);
@@ -98,7 +109,7 @@ public class Main {
                 6, 6); //xPad, yPad
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 200);
+        frame.setSize(470, 200);
         frame.getContentPane().add(panel);
         frame.setVisible(true);
 
