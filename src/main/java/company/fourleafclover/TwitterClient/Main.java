@@ -23,7 +23,7 @@ public class Main {
             // We recommend adjusting this value in production.
             options.setTracesSampleRate(1.0);
             // When first trying Sentry it's good to see what the SDK is doing:
-            options.setDebug(true);
+            options.setDebug(false);
         });
         System.out.println("Started!");
 
@@ -82,6 +82,7 @@ public class Main {
 
                         } catch (Exception er) {
                             Sentry.captureException(er);
+                            System.out.println("Logged exception!");
                         }
 
 
