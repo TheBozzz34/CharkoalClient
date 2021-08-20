@@ -31,11 +31,16 @@ public class Main {
         lblASecret.setLabelFor(pfASecret);
 
         JButton btnGet = new JButton("Send tweet");
+
         btnGet.addActionListener(
                 new ActionListener() {
 
                     public void actionPerformed(ActionEvent e) {
-                        String password = new String(pfToken.getPassword());
+                        String APItoken = new String(pfToken.getPassword());
+                        String APISecret = new String(pfASecret.getPassword());
+                        String AccessToken = new String(pfToken.getPassword());
+                        String AccessSecret = new String(pfASecret.getPassword());
+
                         JOptionPane.showMessageDialog(frame,
                                 "Tweet sent!");
                     }
